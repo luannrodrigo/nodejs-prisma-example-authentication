@@ -5,7 +5,9 @@ class UserController {
   async store(request, response) {
     const { name, email, password } = request.body;
 
-    const user = await CreateUserService.run({ name, email, password });
+    const service = new CreateUserService();
+
+    const user = await service.run({ name, email, password });
 
     return response.status(201).json(user);
   }

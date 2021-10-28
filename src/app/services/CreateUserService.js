@@ -6,10 +6,14 @@ class CreateUserService {
     this.orm = repository;
   }
 
-  async run({ name, email, password }) {
-    const isUserExist = await this.orm.findByEmail(email);
+  inject(repository) {
+    this.orm = repository;
+  }
 
-    if (isUserExist) {
+  async run({ name, email, password }) {
+    const checkUserExist = await this.orm.findByEmail(email);
+
+    if (checkUserExist) {
       throw new AppError('Email already exist!', 401);
     }
 
@@ -19,4 +23,4 @@ class CreateUserService {
   }
 }
 
-export default new CreateUserService();
+export default CreateUserService;
