@@ -2,11 +2,9 @@ import AppError from '../../errors/AppError';
 import UserRepository from '../repositories/UserRepository';
 
 class CreateUserService {
+  /* istanbul ignore next */
+  // only disable line coverage for this constructor
   constructor(repository = UserRepository) {
-    this.orm = repository;
-  }
-
-  inject(repository) {
     this.orm = repository;
   }
 

@@ -17,7 +17,7 @@ class FakeUserRepository {
     return checkUser;
   }
 
-  async update({ id, name, password }) {
+  async update(id, name, password) {
     const checkUser = this.users.findIndex((user) => user.id === id);
 
     const user = { name, password };

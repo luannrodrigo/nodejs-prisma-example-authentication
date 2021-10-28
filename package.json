@@ -6,7 +6,7 @@
   "scripts": {
     "dev:server": "nodemon --inspect  src/server.js",
     "orm": "npx prisma",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@prisma/client": "^3.3.0",
