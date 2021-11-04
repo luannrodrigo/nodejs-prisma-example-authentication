@@ -10,19 +10,22 @@ class SessionService {
   }
 
   async run({ email, password }) {
-    const isUserExist = await this.orm.findByEmail(email);
+    const checkUserExist = await this.orm.findByEmail(email);
 
-    if (!isUserExist) {
+    if (!checkUserExist) {
       throw new AppError('Email/Password incorrect', 401);
     }
 
-    const checkPassword = await bcrypt.compare(password, isUserExist.password);
+    const checkPassword = await bcrypt.compare(
+      password,
+      checkUserExist.password
+    );
 
     if (!checkPassword) {
       throw new AppError('Email/Password incorrect', 401);
     }
 
-    const { id, name } = isUserExist;
+    const { id, name } = checkUserExist;
 
     return {
       user: {
@@ -37,4 +40,4 @@ class SessionService {
   }
 }
 
-export default new SessionService();
+export default SessionService;
